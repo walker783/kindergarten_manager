@@ -7,17 +7,21 @@ import 'element-ui/lib/theme-default/index.css';    // 默认主题
 // import '../static/css/theme-green/index.css';       // 浅绿色主题
 import "babel-polyfill";
 import './mock/index.js';
-import api from '../config/api.js';
+//import api from '../config/api.js';
 import url from '../config/url.js';
 import VueQuillEditor from 'vue-quill-editor';
 import Quill from 'quill';
+var $http = axios.create({
+
+});
 //Quill.insertEmbed(10, 'image', 'http://quilljs.com/images/cloud.png');
 /*import { ImageImport } from '../modules/ImageImport.js'
 import { ImageResize } from '../modules/ImageResize.js'
 Quill.register('modules/imageImport', ImageImport)
 Quill.register('modules/imageResize', ImageResize)*/
 // 将API方法绑定到全局
-Vue.prototype.$api = api;
+//Vue.prototype.$api = api;
+Vue.prototype.$http = $http;
 Vue.prototype.url = url;
 Date.prototype.format = function(fmt){
 	var o = {
