@@ -36,4 +36,5 @@
 	    padding: 0 45px;
 	    background: #2D3F51;
 	}
+	.content{padding-left:240px;background: #fff;}
 </style>

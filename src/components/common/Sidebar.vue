@@ -20,15 +20,6 @@
 				</li>
 			</ul>
 		</div>
-		<div class="showMenu">
-			<div class="prev-icon" @click="prev_icon">《</div>
-			<div class="next-icon" @click="next_icon">》</div>
-			<div class="menu-box">
-				<ul class="menu-list">
-					<li class="yint" v-for="(list,index) in menuList" :class="list == targetWord ? 'active':''" @click="showMenu(list,$event)"><span @click="deleteMenu(list,$event)" class="close-show" id="closeIcon">&times;</span>{{list.slice(list.indexOf('&')+1)}}<i :class="list == targetWord ? 'active':''" class="border_right" id="rightLine"></i></li>
-				</ul>
-			</div>
-		</div>
 	</div>
 </template>
 

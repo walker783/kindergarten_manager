@@ -22,38 +22,38 @@
 <script>
 	export default {
 	    data() {
-	            return {
-	            	login:{
-	            		name:'',
-	            		password:''
-	            	},
-	            	rules: {
-						username: [{
-							required: true,
-							message: '请输入用户名',
-							trigger: 'blur'
-						}],
-						password: [{
-							required: true,
-							message: '请输入密码',
-							trigger: 'blur'
-						}]
-					}
-	            }
-	        },
-	        methods: {
-	        	submitForm(login){
-	        		var self = this;
-	        		if(self.login.name == ''||self.login.password == ''){
-	        			self.$message('用户名和密码不能为空');
-	        			return;
-	        		}else{
-	        			self.$http.post('http://116.62.51.6/login?phone='+self.login.name+'&password='+self.login.password,{},function(data){
-	        			console.log(1);
-	        			});
-	        		}
-	        	}
-	        }
+            return {
+            	login:{
+            		name:'',
+            		password:''
+            	},
+            	rules: {
+					username: [{
+						required: true,
+						message: '请输入用户名',
+						trigger: 'blur'
+					}],
+					password: [{
+						required: true,
+						message: '请输入密码',
+						trigger: 'blur'
+					}]
+				}
+            }
+        },
+        methods: {
+        	submitForm(login){
+        		var self = this;
+        		if(self.login.name == ''||self.login.password == ''){
+        			self.$message('用户名和密码不能为空');
+        			return;
+        		}else{
+        			self.$http.post('/web/login?phone='+self.login.name+'&password='+self.login.password).then(function(data){
+        			console.log(data);
+        			});
+        		}
+        	}
+        }
 	}
 </script>
 
