@@ -49,7 +49,16 @@
         			return;
         		}else{
         			self.$http.post('/web/login?phone='+self.login.name+'&password='+self.login.password).then(function(data){
-        			console.log(data);
+        				console.log(data);
+        				if(data.data.status == 200){
+        					var access_token = data.data.access_token;
+        					var siderBar = data.data.siderBar;
+        					window.localStorage.access_token = JSON.stringify(access_token);
+        					window.localStorage.siderBar = JSON.stringify(siderBar);
+        					self.$router.push('/staffMng');
+        				}else{
+        					alert(data.data.msg);
+        				}
         			});
         		}
         	}
