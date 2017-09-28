@@ -5,7 +5,7 @@
 				<li v-for="(item,index) in oneLevel">
 					<div class=""><i class="el-icon-caret-right el-submenu__icon-arrow"></i><div style="padding-left:20px;">{{item.name}}</div></div>
 					<ul class="submenu">
-						<li v-for="itemSub in towLevel[index]"></li>
+						
 					</ul>
 				</li>
 			</ul>
@@ -166,7 +166,7 @@
 	}
 	
 	#sidebar .menuStyle .el-submenu__icon-arrow {
-		top: 16px;
+		top: 35px;left:0;
 	}
 	
 	#sidebar .menuStyle .el-submenu__icon-arrow.open-hover {
