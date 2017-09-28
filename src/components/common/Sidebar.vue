@@ -2,20 +2,10 @@
 	<div class="sidebar_box">
 		<div class="sidebar" id="sidebar">
 			<ul class="menuStyle">
-				<li v-for="(item,index) in classA">
-					<div @click="oneLevel($event)"><i :class="index == 0 ? 'el-icon-date' : index == 1 ? 'el-icon-time' : index == 2 ? 'el-icon-star-off' : index == 3 ? 'el-icon-date' : 'el-icon-star-on'" class="marginRight"></i>{{item.name}}<b class="el-submenu__icon-arrow el-icon-arrow-down"></b></div>
-					<ul class="menuStyleOne">
-						<li v-for="itemb in classB" v-show="itemb.parentid == item.menuid && itemb.formname !=''">
-							<div @click="show(itemb.formname.substr(itemb.formname.lastIndexOf('.')+1), itemb.name)">{{itemb.name}}</div>
-						</li>
-						<li v-for="itemb in classB" v-show="itemb.parentid == item.menuid && itemb.formname ==''">
-							<div @click="twoLevel($event)">{{itemb.name}}<i class="el-submenu__icon-arrow el-icon-arrow-down"></i></div>
-							<ul class="menuStyleTwo">
-								<li v-for="itemc in classC" v-show="itemc.parentid == itemb.menuid">
-									<div @click="show(itemc.formname.substr(itemc.formname.lastIndexOf('.')+1), itemc.name)">{{itemc.name}}</div>
-								</li>
-							</ul>
-						</li>
+				<li v-for="(item,index) in oneLevel">
+					<div class=""><i class="el-icon-caret-right el-submenu__icon-arrow"></i><div style="padding-left:20px;">{{item.name}}</div></div>
+					<ul class="submenu">
+						<li v-for="itemSub in towLevel[index]"></li>
 					</ul>
 				</li>
 			</ul>
@@ -30,211 +20,61 @@
 	export default {
 		data() {
 			return {
-				sureAdmin: false,
-				currentName: '',
-				menuList: [],
-				isCollapse: true,
-				openFlag1: false,
-				openFlag2: false,
-				openFlag11: true,
-				targetWord: '',
-				treeList: [],
-				classA: [],
-				classB: [],
-				classC: []
+				siderBar:[],
+				oneLevel:[],
+				towLevel:[],
+				j:[]
 			}
 		},
 		created() {
-			let self = this;
-			this.menuListBtn();
-			this.targetWord = localStorage.getItem('target');
-			self.menuList = JSON.parse(localStorage.getItem('aList')) == null ? [] : JSON.parse(localStorage.getItem('aList'));
-			if(this.menuList != null) {
-				var vue = this.targetWord.slice(0, this.targetWord.indexOf('&'));
-				console.log(vue);
-				if(vue != 'undefine') {
-					self.$router.push({path:'/'+vue});
-				} else {
-					self.$router.push({path:'/home'});
-				}
-			}
-		},
-		computed: {
-			onRoutes() {
-				return this.$route.path.replace('/', '');
-			}
+			this.render();
 		},
 		methods: {
-			oneLevel($event) {
-				let self = this;
-				$($event.target).parent('li').siblings('li').children('ul[class=menuStyleOne]').slideUp();
-				$($event.target).parent('li').siblings('li').children('div').children('b').removeClass('open-hover');
-				$($event.target).siblings('ul[class=menuStyleOne]').slideToggle();
-				$('.menuStyleTwo').slideUp();
-				$('i[class~=open-hover]').removeClass('open-hover');
-				$($event.target).children('b').hasClass('open-hover') ? $($event.target).children('b').removeClass('open-hover') : $($event.target).children('b').addClass('open-hover');
-			},
-			twoLevel($event) {
-				let self = this;
-				$($event.target).parent('li').siblings('li').children('ul[class=menuStyleTwo]').slideUp();
-				$($event.target).parent('li').siblings('li').children('div').children('i').removeClass('open-hover');
-				$($event.target).siblings('ul[class=menuStyleTwo]').slideToggle();
-				$($event.target).children('i').hasClass('open-hover') ? $($event.target).children('i').removeClass('open-hover') : $($event.target).children('i').addClass('open-hover');
-			},
-			menuListBtn() {
-				let self = this;
-				self.$api.post(self.url.initMenu + '?username=' + JSON.parse(localStorage.getItem('adminInfo')).loginname + '&password=' + JSON.parse(localStorage.getItem('adminInfo')).password + '&city=hangzhou', {}, function(r) {
-					for(var i = 0; i < r.data.length; i++) {
-						if(r.data[i].menuLevel == '1') {
-							self.classA.push(r.data[i]);
-						} else if(r.data[i].menuLevel == '2') {
-							self.classB.push(r.data[i]);
-						} else if(r.data[i].menuLevel == '3') {
-							self.classC.push(r.data[i]);
-						}
-					}
-					console.log(self.class3);
-				}, function(r) {
-					console.log(r);
-				}, self.url.MOCK);
-			},
-			openThird($event) {
-				let self = this;
-				var secondeMenus = document.getElementsByClassName('secondeMenu');
-				for(var i = 0; i < secondeMenus.length; i++) {
-					if(secondeMenus[i] == $event.target) {
-						$($event.target).children('ul').fadeIn();
-					} else {
-						$(secondeMenus[i]).children('ul').fadeOut();
+			render(){
+				var self = this;
+				var subset1 = [];
+				var subset2 = [];
+				var subset3 = [];
+				var subset4 = [];
+				var subset5 = [];
+				var subset6 = [];
+				self.siderBar = JSON.parse(localStorage.getItem('siderBar'));
+				for(var i =0;i<self.siderBar.length;i++){
+					if(self.siderBar[i].level == 0){
+						self.j.push(i);
 					}
 				}
-			},
-			closeThird() {
-
-			},
-			navigationList() {
-				let self = this;
-			},
-			show(men, word) {
-				this.$router.push({
-					path: '/' + men
-				})
-				var mena = men + '&' + word;
-				let self = this;
-				self.openFlag11 = false;
-				this.currentName = name;
-				console.log(mena);
-				var menuLists = self.menuList;
-				if(menuLists.length == 0) {
-					localStorage.setItem('target', mena);
-					self.targetWord = localStorage.getItem('target');
-					console.log(localStorage.getItem('target'));
-					self.menuList.push(mena);
-					localStorage.setItem('aList', JSON.stringify(self.menuList));
-				} else {
-					for(var i = 0; i < menuLists.length; i++) {
-						console.log(i);
-						if(menuLists[i] == mena) {
-							localStorage.setItem('target', mena);
-							var lis = document.getElementsByClassName('close-show');
-							for(var j = 0; j < lis.length; j++) {
-								if($(lis[j]).parent().text().substr(1) == mena.slice(mena.indexOf('&') + 1)) {
-									$(lis[j]).parent().children('i').hide();
-									$(lis[j]).parent().addClass('active').siblings().removeClass('active');
-									$(lis[j]).parent().siblings().children('i').show();
-								}
-							}
-							break;
-						} else if(i == menuLists.length - 1) {
-							localStorage.setItem('target', mena);
-							self.targetWord = mena;
-							self.menuList.push(mena);
-							localStorage.setItem('aList', JSON.stringify(self.menuList));
-							self.$nextTick(function() {
-								var lisy = document.getElementsByClassName('yint'),
-									listWidth = 0,lastWidth = 0;
-								for(var k = 0; k < lisy.length; k++) {
-									console.log($(lisy[k]).css('width'));
-									listWidth = listWidth +46+ parseInt($(lisy[k]).css('width'));
-									if(k == lisy.length -1){
-										lastWidth = parseInt($(lisy[k]).css('width'));
-									}
-								}
-								var divW = parseInt($('.menu-box').css('width'));
-								if(listWidth > divW){
-									$('.menu-list').animate({
-										'left':-(Math.abs(parseInt($('.menu-list').css('left'))) + lastWidth)+'px'
-									});
-								}
-							});
-						}
-					}
+				for(var i = 0;i<self.j.length;i++){
+					self.oneLevel.push(self.siderBar[self.j[i]]);
 				}
-			},
-			deleteMenu(vue, $event) {
-				let self = this;
-				var changeInt = self.menuList;
-				console.log(changeInt.length);
-				for(var i = 0; i < changeInt.length; i++) {
-					if(changeInt[i] == vue) {
-						changeInt.splice(i, 1);
-						localStorage.setItem('aList', JSON.stringify(changeInt));
-						//						var act = document.getElementsByClassName('active');
-						//						$(act[0]).removeClass('active');
-					}
+				for(var i = self.j[0]+1;i<self.j[1];i++){
+					subset1.push(self.siderBar[i]);
 				}
-				if(localStorage.getItem('target') == vue) {
-					localStorage.setItem('target', changeInt[changeInt.length - 1]);
-
+				for(var i = self.j[1]+1;i<self.j[2];i++){
+					subset2.push(self.siderBar[i]);
 				}
-				self.menuList = changeInt;
-				self.targetWord = localStorage.getItem('target');
-				console.log(self.targetWord);
-				var vues = self.targetWord.slice(0, self.targetWord.indexOf('&'));
-				console.log(vues);
-				if(vues != 'undefine') {
-					self.$router.push({path:'/' + vues});
-				} else {
-					self.$router.push({path:'/home'});
+				for(var i = self.j[2]+1;i<self.j[3];i++){
+					subset3.push(self.siderBar[i]);
 				}
-				$event.cancelBubble = true;
-			},
-			showMenu(vue, $event) {
-				let self = this;
-				localStorage.setItem('target', vue);
-				$($event.target).children('i').hide();
-				$($event.target).siblings().children('i').show();
-				var vue = vue.slice(0, vue.indexOf('&'));
-				self.$router.push({path:'/'+vue});
-				$($event.target).addClass('active').siblings().removeClass('active');
-			},
-			prev_icon() {
-				if(parseInt($('.menu-list').css('left')) <= -60) {
-					$('.menu-list').animate({
-						'left': parseInt($('.menu-list').css('left')) + 60 + 'px'
-					}, 200)
-				} else {
-					$('.menu-list').animate({
-						'left': '0px'
-					}, 200)
+				for(var i = self.j[3]+1;i<self.j[4];i++){
+					subset4.push(self.siderBar[i]);
 				}
-			},
-			next_icon() {
-				var lisy = document.getElementsByClassName('yint'),
-					listWidth = 0;
-				for(var k = 0; k < lisy.length; k++) {
-					listWidth = listWidth+ 46 + parseInt($(lisy[k]).css('width'));
+				for(var i = self.j[4]+1;i<self.j[5];i++){
+					subset5.push(self.siderBar[i]);
 				}
-				var divW = parseInt($('.menu-box').css('width')) + Math.abs(parseInt($('.menu-list').css('left')));
-				if(listWidth > divW){
-					$('.menu-list').animate({
-						'left': parseInt($('.menu-list').css('left')) - 60 + 'px'
-					}, 200)
+				for(var i = self.j[5]+1;i<self.j[6];i++){
+					subset6.push(self.siderBar[i]);
 				}
-			},
-			ifShow(name) {
-				//				this.openFlag1 = false;
-				return this.currentName == name;
+				self.towLevel = [subset1,subset2,subset3,subset4,subset5,subset6];
+//				self.siderBar.forEach(function(elem,index){
+//					if(elem.level == 0){
+//						self.oneLevel.push(elem);
+//					}else{
+//						self.towLevel.push(elem);
+//					}
+//				})
+				console.log(self.oneLevel);
+				console.log(self.towLevel);
 			}
 		}
 	}
@@ -276,7 +116,8 @@
 	#sidebar .menuStyle>li>div {
 		width: 100%;
 		padding: 6px 0;
-		padding-left: 18px;
+		padding-left: 35px;
+		height:40px;line-height:40px;
 	}
 	
 	#sidebar .menuStyleOne {
@@ -350,7 +191,7 @@
 		left: 0;
 		top: 0px;
 		bottom: 0;
-		background: #2E363F;
+		background: #4A5065;
 	}
 	
 	.sidebar>ul {

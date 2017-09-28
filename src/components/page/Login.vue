@@ -48,13 +48,16 @@
         			self.$message('用户名和密码不能为空');
         			return;
         		}else{
-        			self.$http.post('/web/login?phone='+self.login.name+'&password='+self.login.password).then(function(data){
-        				console.log(data);
+        			var data = {
+        				phone:self.login.name,
+        				password:self.login.password
+        			}
+        			self.$http.post('/web/login',data).then(function(data){
         				if(data.data.status == 200){
-        					var access_token = data.data.access_token;
-        					var siderBar = data.data.siderBar;
-        					window.localStorage.access_token = JSON.stringify(access_token);
-        					window.localStorage.siderBar = JSON.stringify(siderBar);
+        					var data = data.data;
+        					window.localStorage.access_token = JSON.stringify(data.access_token);
+        					window.localStorage.siderBar = JSON.stringify(data.siderBar);
+        					window.localStorage.name = JSON.stringify(data.name);
         					self.$router.push('/staffMng');
         				}else{
         					alert(data.data.msg);
