@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper">
         <v-head></v-head>
-        <v-sidebar></v-sidebar>
         <div class="content">
+        	<v-sidebar></v-sidebar>
             <transition name="move" mode="out-in"><router-view></router-view></transition>
         </div>
     </div>
@@ -36,5 +36,5 @@
 	    padding: 0 45px;
 	    background: #2D3F51;
 	}
-	.content{padding-left:240px;background: #fff;}
+	.content{padding-left:240px;background: #4A5065;}
 </style>

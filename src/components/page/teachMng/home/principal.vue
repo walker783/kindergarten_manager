@@ -6,7 +6,7 @@
 		</div>
 		<div style="color:#333" class="zoom">
 			<div class="home-box lf">
-				<div class="leave" v-show="no-leave">
+				<div class="leave" v-show="no_leave">
 					<div class="leave-img home-img"></div>
 					<div class="leave-txt" style="color:#999;text-align: center;height:50px;line-height:50px;">今日无请假</div>
 				</div>
@@ -40,6 +40,16 @@
 </template>
 
 <script>
+	export default {
+	    data() {
+            return {
+            	no_leave:false
+            }
+        },
+        methods: {
+        	
+        }
+	}
 </script>
 
 <style scoped>
