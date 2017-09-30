@@ -25,13 +25,13 @@
 		</div>
 		<div class="page" style="padding-top:20px;padding-bottom: 50px;">
 			<div class="page-info">
-				<el-table ref="singleTable" :data="tableData" fit border style="width: 100%" @current-change="handleCurrentChang">
+				<el-table ref="singleTable" :data="tableData" fit border style="width: 100%">
 					<el-table-column type="selection" width="55"></el-table-column>
-					<el-table-column prop="name" label="姓名" min-width="70" header-align="center"></el-table-column>
-					<el-table-column prop="position" label="职位" min-width="70" header-align="center"></el-table-column>
-					<el-table-column prop="class_id" label="工号" min-width="70" header-align="center"></el-table-column>
-					<el-table-column prop="phone" label="手机号" min-width="70" header-align="center"></el-table-column>
-					<el-table-column prop="email" label="邮箱" min-width="70" header-align="center"></el-table-column>
+					<el-table-column prop="name" label="姓名" header-align="center"></el-table-column>
+					<el-table-column prop="position" label="职位" header-align="center"></el-table-column>
+					<el-table-column prop="job_number" label="工号" header-align="center"></el-table-column>
+					<el-table-column prop="phone" label="手机号" header-align="center"></el-table-column>
+					<el-table-column prop="email" label="邮箱" header-align="center"></el-table-column>
 				</el-table>
 			</div>
 		</div>
@@ -50,24 +50,25 @@
 			}
 		},
 		created() {
-			this.render();
+			this.render(1);
 		},
 		methods:{
 			handleCurrentChang(val) {
 				this.currentRow = val;
 				console.log(val);
 			},
-			render(){
+			render(num){
 				let self = this;
 				let access_token = JSON.parse(localStorage.getItem('access_token'));
 				let data = {
+					page:num,
 					keywords:self.form.name,
 					access_token:access_token
 				};
 				self.$http.post('/web/employee',data).then(function(data){
 					console.log(data);
 					if(data.data.status == 200){
-						
+						self.tableData = data.data.data.data;
 					}
 				})
 			}
