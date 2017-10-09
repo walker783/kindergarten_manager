@@ -3,7 +3,7 @@
 		<div class="login-main">
 			<div class='login-title'>用户登录</div>
 			<div class="login-msg">
-				<el-form ref="login" :model="login":rules="rules" label-width="0">
+				<el-form ref="login" :model="login" :rules="rules" label-width="0">
 					<el-form-item prop="name">
 						<el-input v-model="login.name" size="large" placeholder="请输入用户手机号"></el-input>
 					</el-form-item>

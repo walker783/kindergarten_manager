@@ -6,7 +6,7 @@
 				<div class="top-title lf">幼儿后台管理系统</div>
 				<div class="top-btn lf" @click="control()">我的控制台</div>
 				<div class="quit rt">退出</div>
-				<div class="top-user rt">您好，xx</div>
+				<div class="top-user rt">您好，{{name}}</div>
 			</div>
 		</div>
 	</header>
@@ -15,10 +15,21 @@
 	export default {
 	    data() {
             return {
-            	
+            	name:''
             }
         },
+        created() {
+			this.login();
+		},
         methods: {
+        	login(){
+        		let self = this;
+        		if(!localStorage.getItem('access_token')){
+        			self.$router.push('/login');
+        		}else{
+        			self.name = JSON.parse(localStorage.getItem('name'));
+        		}
+        	},
         	control(){
         		var self = this;
         		let access_token = JSON.parse(localStorage.getItem('access_token'));

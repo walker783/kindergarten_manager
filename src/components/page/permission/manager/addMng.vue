@@ -1,5 +1,5 @@
 <template>
-	<div class="addMng" style="padding-left:30px;">
+	<div class="addMng main" style="padding-left:30px;">
 		<div class="addMng-top main-top zoom">
 			<div class="round lf"></div>
 			<div class="addMng-title lf">权限管理/<span class="zClr-666">管理员列表/</span><span class="zClr-666">添加管理员</span></div>
@@ -41,7 +41,7 @@
 <style scoped>
 	.addsset-title{text-align: center;font-size: 28px;padding: 15px 0;}
 	.mselect-label{width: 120px;text-align: right;}
-	.input-large{width: 400px;}
+	.input-large{width: 400px;border:1px solid #333}
 	.addsset-items{width: 600px;margin: 0 auto;}
 	input{height:40px;}
 	.butn{height:40px;line-height:40px;}

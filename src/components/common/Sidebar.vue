@@ -70,7 +70,6 @@
 			},
 			show($event){
 				let self = this;
-				console.log($($event));
 				if($($($event.path)[1]).siblings('ul[class=menuStyleOne]').is(':hidden')){
 					$($($event.path)[1]).siblings('ul[class=menuStyleOne]').show();
 					$($($event.path)[1]).parent('li').siblings('li').children('ul[class=menuStyleOne]').hide();

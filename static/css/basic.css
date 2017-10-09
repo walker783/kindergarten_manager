@@ -1,5 +1,5 @@
 /** 通用属性 **/
-body{font:16px "yahei microsoft", Arial, Helvetica,sans-serif !important;background-color:#333745;color: #333 !important;min-width:996px;overflow-x: hidden;}
+body{font:16px "yahei microsoft", Arial, Helvetica,sans-serif !important;color: #333 !important;min-width:996px;overflow-x: hidden;}
 ul,li,p,h1,h2,h3,h4,h5,h6,dl,dd,dt{border:none;list-style:none;}
 *{padding:0;margin:0;outline:none;-webkit-tap-highlight-color:rgba(255,0,0,0);-webkit-user-select:none;}
 table{border-collapse:collapse;border-spacing:0;-webkit-appearance:none;}
@@ -20,7 +20,7 @@ img{width: 100%;height:100%;}
 /*botton按钮*/ 
 .butn{ border-radius: 4px; color: #ffffff !important; border: none; height: 30px; line-height:30px; outline: none; font-size: 14px; cursor: pointer; display: inline-block;text-align: center;}
 .btn[disabled]{ background-color: #f2f2f2; }
-.btn-main{ background-color: #f7d359; }
+.btn-main{ background-color: #f7d359!important;border-style: none!important; }
 .btn-main:not([disabled]):hover{ background-color: #ffdf73; }
 .btn-main:not([disabled]):active{ background-color: #edc84c; }
 .btn-sec { background-color: #2eabff; }
@@ -31,7 +31,8 @@ img{width: 100%;height:100%;}
 
 /*input框*/
 /*input[date] { background: url(../images/basic/date.gif) no-repeat; -webkit-background-position-x: calc(100% - 10px); -moz-background-position-x: calc(100% - 10px); -o-background-position-x: calc(100% - 10px); -ms-background-position-x: calc(100% - 10px); background-position-x: calc(100% - 10px); background-position-y: center; }*/
-input{border:1px solid #ccc;border-radius: 4px;height:30px;line-height:30px;font-size: 16px;padding-left:10px;}
+.el-input--large .el-input__inner{height:56px!important;}
+input{height:30px;line-height:30px;font-size: 16px;}
 .input-large { width: 210px; }
 .input-normal { width: 150px; }
 .input-small { width: 80px; }
@@ -61,7 +62,7 @@ input{border:1px solid #ccc;border-radius: 4px;height:30px;line-height:30px;font
 .zClr-f7d359{color:#f7d359;}
 .zClr-e5233f{color:#e5233f;}
 
-.main-top{height:80px;line-height:80px;font-size: 18px;color:#333;border-bottom: 2px solid #ccc;margin-top:20px;}
+.main-top{height:80px;line-height:80px;font-size: 18px;color:#333;border-bottom: 2px solid #ccc;padding-top:20px;}
 .search-item{display:inline-block;vertical-align:top;min-height:30px;padding-top:20px}
 .search-btn{height:40px;background: #f1f1f1;padding:5px 0;padding-left:20px;}
 
@@ -80,18 +81,7 @@ input{border:1px solid #ccc;border-radius: 4px;height:30px;line-height:30px;font
 .mselect .mselect-options li { height: 30px; line-height: 30px; padding-left: 10px; }
 .mselect .mselect-options li:hover { background-color: #0db3b9; color: #fff; }
 
-.page .page-info { overflow-x: auto; border: 1px solid #d7d8e4; min-height: 392px; -webkit-width: calc(100% - 30px); -moz-width: calc(100% - 30px); -o-width: calc(100% - 30px); -ms-width: calc(100% - 30px); width: calc(100% - 30px); }
-.page .page-info table { width: 100%; position: relative; }
-.page .page-info table tr { height: 30px; border-top: 1px solid #d7d8e4; }
-.page .page-info table tr:first-child, .page .page-info table tr:nth-child(2) { border-top: none; }
-.page .page-info table tr th, .page .page-info table tr td { text-align: center; text-indent: 1em; min-width: 0px; }
-.page .page-info table tr th { background-color: #c1c4d5; }
-.page .page-info table tr td .content { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: auto; }
-.page .page-info table tr td[showtips]:hover .content { color: #6e75a3; }
-.page .page-info .showTips { background-color: #7072a1; position: absolute; left: 100%; top: 0px; border-radius: 5px; color: #fff; padding: 10px; text-indent: 0; word-break: break-all; word-wrap: break-word; }
-.page .page-info .showTips:after { content: ""; display: block; width: 0px; height: 0px; border-top: 5px solid transparent; border-left: none; border-bottom: 5px solid transparent; border-right: 10px solid #7072a1; left: -10px; top: 10px; position: absolute; }
-.page .page-button { width: 720px; margin: 0 auto; margin-top: 30px; }
-.tab-main{background-color:#fff;overflow:hidden;}
+.page .page-info { overflow-x: auto; -webkit-width: calc(100% - 30px); -moz-width: calc(100% - 30px); -o-width: calc(100% - 30px); -ms-width: calc(100% - 30px); width: calc(100% - 30px); }
 
 /****/
 .msg{position:fixed;top:36%;left:0px;text-align:center;width:100%;}
@@ -106,3 +96,6 @@ input{border:1px solid #ccc;border-radius: 4px;height:30px;line-height:30px;font
 .round{width:8px;height:8px;background: #f7d359;border-radius: 50%;margin:36px 15px 36px 0;}
 /**页面加载中**/
 /*.loading{position:fixed;top:0px;left:0px;width:100%;height:100%;background-color:rgba(0,0,0,0.7);background-image:url(/merchant/img/loading.gif);background-repeat:no-repeat;background-size:70px;display:none}*/
+
+
+.main{padding-left:30px;background: #fff;}
