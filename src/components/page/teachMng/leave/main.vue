@@ -10,15 +10,18 @@
 		<div class="page" style="padding-top:20px;padding-bottom: 20px;">
 			<div class="page-info">
 				<el-table ref="singleTable" :data="tableData" fit border style="width: 100%;">
-					<el-table-column prop="name" label="姓名" header-align="center"></el-table-column>
-					<el-table-column prop="jobT" label="职位" header-align="center"></el-table-column>
-					<el-table-column prop="job_number" label="工号" header-align="center"></el-table-column>
-					<el-table-column prop="phone" label="手机号" header-align="center"></el-table-column>
-					<el-table-column prop="email" label="邮箱" header-align="center"></el-table-column>
-					<el-table-column prop="clbum" label="所带班级" header-align="center"></el-table-column>
+					<el-table-column prop="multi_name" label="姓名" header-align="center"></el-table-column>
+					<el-table-column prop="multi_type" label="职位" header-align="center"></el-table-column>
+					<el-table-column prop="sta_time" label="开始时间" header-align="center"></el-table-column>
+					<el-table-column prop="end_time" label="结束时间" header-align="center"></el-table-column>
+					<el-table-column prop="leave_type" label="请假类型" header-align="center"></el-table-column>					
+					<el-table-column prop="days" label="请假天数" header-align="center"></el-table-column>
+					<el-table-column prop="applicant_multi_name" label="审批者" header-align="center"></el-table-column>
+					<el-table-column prop="create_time" label="录入时间" header-align="center"></el-table-column>
+					<el-table-column prop="leave_type" label="备注" header-align="center"></el-table-column>
 					<el-table-column label="操作" header-align="center">
 				      	<template scope="scope">
-					        <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+					        <!--<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>-->
 					        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
 				      	</template>
 				    </el-table-column>
@@ -42,30 +45,35 @@
 			}
 		},
 		created() {
-			this.render(1);
+			let self = this;
+				let access_token = JSON.parse(localStorage.getItem('access_token'));
+				let data = {
+					access_token:access_token
+				};
+				self.$http.post('/web/employee/level',data).then(function(data){
+					console.log(data);
+//						self.tableData = data.data.data.data;
+//						let total = data.data.data.total+'0';
+//						self.totalpages = parseInt(total);
+				})
 		},
 		methods:{
 			handleCurrentChange(val) {
 				this.cur_page = val;
 				this.render(val);
 			},
-			render(num){
+			render(){
 				let self = this;
-				self.cur_page = num;
 				let access_token = JSON.parse(localStorage.getItem('access_token'));
-//				let data = {
-//					page:num,
-//					keywords:self.form.name,
-//					access_token:access_token
-//				};
-//				self.$http.post('/web/employee',data).then(function(data){
-//					console.log(data);
-//					if(data.data.status == 200){
+				let data = {
+					access_token:access_token
+				};
+				self.$http.post('/web/employee/level',data).then(function(data){
+					console.log(data);
 //						self.tableData = data.data.data.data;
 //						let total = data.data.data.total+'0';
 //						self.totalpages = parseInt(total);
-//					}
-//				})
+				})
 			},
 			educe(){
 				let self = this;
