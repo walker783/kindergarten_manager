@@ -116,7 +116,7 @@
 	.appr-set-sign{width:20px;height:20px;border:1px solid #999;border-radius: 50%;text-align: center;line-height:20px;}
 	.approval-right{position: absolute;top:0;left:0;z-index: 9;width:100%;height:100%;}
 	.appr-bg{position: absolute;top:0;left:0;width:400px;height:100%;background: #fff;opacity: 0.3;}
-	.appr-main{position: absolute;top:0;left:400px;background: #fff;width:calc(100% - 400px);height:100%;border-left:1px solid #f2f2f2;}
+	.appr-main{position: absolute;top:0;left:400px;background: #fff;width:calc(100% - 400px);height:100%;box-shadow:-2px 0px 2px #f2f2f2;-moz-box-shadow:-2px 0px 2px #f2f2f2;-webkit-box-shadow:-2px 0px 2px #f2f2f2}
 	.setAppr{padding:30px;border-top:1px solid #f2f2f2;}
 	.setAppr-title span{display: inline-block;}
 	.setAppr-txt{margin-left:30px;color: #999;}

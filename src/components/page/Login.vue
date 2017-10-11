@@ -42,7 +42,7 @@
             }
         },
         methods: {
-        	submitForm(login){
+        	submitForm(login){//点击登录
         		var self = this;
         		if(self.login.name == ''||self.login.password == ''){
         			self.$message('用户名和密码不能为空');
@@ -55,9 +55,9 @@
         			self.$http.post('/web/login',data).then(function(data){
         				if(data.data.status == 200){
         					var data = data.data;
-        					window.localStorage.access_token = JSON.stringify(data.access_token);
-							window.localStorage.siderBar = JSON.stringify(data.siderBar);
-        					window.localStorage.name = JSON.stringify(data.name);
+        					window.localStorage.access_token = JSON.stringify(data.access_token);//缓存唯一票据
+							window.localStorage.siderBar = JSON.stringify(data.siderBar);//缓存左侧导航
+        					window.localStorage.name = JSON.stringify(data.name);//缓存用户姓名
         					self.$router.push('/staffMng');
         				}else{
         					alert(data.data.msg);

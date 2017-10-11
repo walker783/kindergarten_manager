@@ -5,7 +5,7 @@
 				<div class="addsset-title">{{ typename }}</div>
 				<div class="addsset-main">
 					<el-form ref="addMsg" :model="addMsg" :rules="rules" label-width="100px" style="padding-right:100px;">
-						<el-form-item label="姓名：">
+						<el-form-item label="姓名：" prop="name">
 							<el-input v-model="addMsg.name" size="nomal" placeholder="请输入姓名"></el-input>
 						</el-form-item>
 						<el-form-item label="手机号：">

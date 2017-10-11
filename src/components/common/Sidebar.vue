@@ -87,10 +87,10 @@
 			skip(code){
 				let self = this;
 				switch (code){
-					case 'YGGL':self.$router.push('/staffMng');break;
-					case 'JSQJJL':self.$router.push('/leave');break;
-					case 'ZXSQQJ':self.$router.push('/addLeave');break;
-					case 'SP':self.$router.push('/approval');break;
+					case 'YGGL':self.$router.push('/staffMng');break;//员工管理
+					case 'JSQJJL':self.$router.push('/leave');break;//教师请假记录
+					case 'ZXSQQJ':self.$router.push('/addLeave');break;//在线申请请假
+					case 'SP':self.$router.push('/approval');break;//审批
 				}
 			}
 		}
