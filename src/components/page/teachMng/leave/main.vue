@@ -46,11 +46,7 @@
 		},
 		created() {
 			let self = this;
-				let access_token = JSON.parse(localStorage.getItem('access_token'));
-				let data = {
-					access_token:access_token
-				};
-				self.$http.post('/web/employee/level',data).then(function(data){
+				self.$http.post('/web/employee/level').then(function(data){
 					console.log(data);
 //						self.tableData = data.data.data.data;
 //						let total = data.data.data.total+'0';
@@ -64,11 +60,7 @@
 			},
 			render(){
 				let self = this;
-				let access_token = JSON.parse(localStorage.getItem('access_token'));
-				let data = {
-					access_token:access_token
-				};
-				self.$http.post('/web/employee/level',data).then(function(data){
+				self.$http.post('/web/employee/level').then(function(data){
 					console.log(data);
 //						self.tableData = data.data.data.data;
 //						let total = data.data.data.total+'0';
@@ -79,7 +71,6 @@
 				let self = this;
 //				let data = {
 //					keywords:self.form.name,
-//					access_token:JSON.parse(localStorage.getItem('access_token'))
 //				};
 //				let access_token = JSON.parse(localStorage.getItem('access_token'));
 //				access_token = access_token.replace('\+','+');

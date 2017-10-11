@@ -71,11 +71,9 @@
 			render(num){
 				let self = this;
 				self.cur_page = num;
-				let access_token = JSON.parse(localStorage.getItem('access_token'));
 				let data = {
 					page:num,
-					keywords:self.form.name,
-					access_token:access_token
+					keywords:self.form.name
 				};
 				self.$http.post('/web/employee',data).then(function(data){
 					console.log(data);
@@ -120,10 +118,8 @@
 			educe(){
 				let self = this;
 				let data = {
-					keywords:self.form.name,
-					access_token:JSON.parse(localStorage.getItem('access_token'))
+					keywords:self.form.name
 				};
-				let access_token = JSON.parse(localStorage.getItem('access_token'));
 				access_token = access_token.replace('\+','+');
 				console.log(access_token);
 				window.open('/web/employee/export?keywords='+self.form.name);

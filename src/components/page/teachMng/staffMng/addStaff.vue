@@ -73,12 +73,8 @@
             }
         },
         created:function () {
-        		let self = this;
-        		let type = self.$route.query.type,
-        		    access_token = JSON.parse(localStorage.getItem('access_token'));
-        		let data = {
-				access_token:access_token
-			};
+    		let self = this;
+    		let type = self.$route.query.type;
 			if(type == 'add'){
 				self.typename = '新增成员';
 				self.buttonUpdata = false;
@@ -88,16 +84,14 @@
 				self.buttonUpdata=true;
 				self.buttonAdd=false;
 			}
-			self.$http.post('/web/employee/save',data).then(function(data){
+			self.$http.post('/web/employee/save').then(function(data){
 					self.optiond =data.data.data.position;
 				})
 		},
         methods: {        	    
         		submitForm(addMsg){
         			let self = this;
-        			let access_token = JSON.parse(localStorage.getItem('access_token'));
         			let data={
-        				access_token:access_token,
         				name : self.addMsg.name,
         				phone : self.addMsg.phone,
         				job_number : self.addMsg.job_number,
@@ -110,11 +104,9 @@
         		},
         		submitForm(updataMsg){
         			let self = this;
-        			let id = self.$route.query.id,
-        				access_token = JSON.parse(localStorage.getItem('access_token'));
+        			let id = self.$route.query.id;
         			let data={
         				id:id,
-        				access_token:access_token,
         				phone : self.addMsg.phone,
         				position : self.addMsg.position,
         				email : self.addMsg.email
