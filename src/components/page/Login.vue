@@ -56,7 +56,7 @@
         				if(data.data.status == 200){
         					var data = data.data;
         					window.localStorage.access_token = JSON.stringify(data.access_token);
-        					window.localStorage.siderBar = JSON.stringify(data.siderBar);
+							window.localStorage.siderBar = JSON.stringify(data.siderBar);
         					window.localStorage.name = JSON.stringify(data.name);
         					self.$router.push('/staffMng');
         				}else{

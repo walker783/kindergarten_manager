@@ -36,8 +36,9 @@
 		<div class="approval-right">
 			<div class="appr-bg"></div>
 			<div class="appr-main">
-				<div class="appr-right-title main-top" style="padding-left:30px;font-size: 20px;border:0">
+				<div class="appr-right-title main-top" style="padding-left:30px;font-size: 20px;border:0;position: relative;">
 					审批人设置
+					<div class="appr-del"></div>
 				</div>
 				<div class="setAppr">
 					<div class="setAppr-title">
@@ -122,4 +123,5 @@
 	.setAppr-main{margin-top:20px;}
 	.setAppr-arrow{width:96px;height:15px;margin:0 20px;position: relative;margin-top:11px;}
 	.setAppr-state{position:absolute;top:-20px;left:0;width:100%;font-size:14px;text-align: center;}
+	.appr-del{position: absolute;top:10px;right:20px;width:20px;height:20px;border-radius: 50%;background: url(../../../../../static/img/icon/del-hui.png) no-repeat;background-size: 20px;cursor: pointer;}
 </style>

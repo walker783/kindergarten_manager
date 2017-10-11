@@ -19,7 +19,7 @@
 		</div>
 		<div class="search-btn" style="margin-top:20px;">
 			<div class="butn btn-main btn-normal operation" @click="addMng">添加成员</div>
-			<div class="butn btn-main btn-normal operation">批量导入</div>
+			<div class="butn btn-main btn-normal operation" @click="test">批量导入</div>
 			<div class="butn btn-main btn-normal operation" @click="del">批量删除</div>
 			<div class="butn btn-sec input-small operation" @click="educe">导出</div>
 		</div>
@@ -84,7 +84,7 @@
 						let total = data.data.data.total+'0';
 						self.totalpages = parseInt(total);
 					}
-				})
+				});
 			},
 			addMng(){
 				let self = this;
@@ -128,6 +128,18 @@
 				console.log(access_token);
 				window.open('/web/employee/export?keywords='+self.form.name);
 				//self.$http.post('/web/employee/export',data).then(function(data){})
+			},
+			test(){
+				let self = this;
+				let data = {
+					
+				};
+				self.$http.post('/web/staffIndex',data).then(function(data){
+					console.log(data);
+					if(data.data.status == 200){
+						
+					}
+				});
 			}
 		}
 	}
