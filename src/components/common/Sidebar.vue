@@ -17,6 +17,11 @@
 </template>
 
 <script>
+	$('.menuStyleOne').on('click','li',function(){
+		console.log(11);
+		console.log($(this));
+		$(this).addClass('active');
+	});
 	export default {
 		data() {
 			return {
@@ -84,6 +89,7 @@
 				switch (code){
 					case 'YGGL':self.$router.push('/staffMng');break;
 					case 'JSQJJL':self.$router.push('/leave');break;
+					case 'ZXSQQJ':self.$router.push('/addLeave');break;
 				}
 			}
 		}
@@ -104,6 +110,7 @@
 #sidebar .menuStyleOne {background: #333745;}
 #sidebar .menuStyleOne li:hover{background: #f7d359;}
 #sidebar .menuStyleOne>li>div {width: calc(100% - 50px);padding: 6px 0;margin-left: 50px;height:44px;line-height:34px;padding-left:30px;background-size: 20px;}
+.active{background: #f7d359;}
 /*icon*/
 .BJHT{background: url(../../../static/img/icon/BJHT.png) no-repeat center left;}
 .BJXC{background: url(../../../static/img/icon/BJXC.png) no-repeat center left;}

@@ -2,7 +2,7 @@
 	<div class="addStaff main">
 		<div class="tab-main">
 			<div style="margin-top:30px;padding-bottom: 50px;">
-				<div class="addsset-title">新增成员</div>
+				<div class="addsset-title">{{test}}</div>
 				<div class="addsset-main">
 					<el-form ref="addMsg" :model="addMsg" :rules="rules" label-width="100px" style="padding-right:100px;">
 						<el-form-item label="姓名：">
@@ -65,7 +65,8 @@
 						trigger: 'blur'
 					}]
 				},
-				optiond:[]
+				optiond:[],
+				test:'新增成员'
             }
         },
         methods: {
