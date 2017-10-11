@@ -56,10 +56,9 @@
 	.home-principal{background: #ECEFF4;padding-bottom: 50px;}
 	.home-msg{font-size: 16px;padding-left:40px;height:70px;line-height:70px;color:#333;}
 	.home-box{width:calc((100% - 160px)/3);height:300px;background: #fff;margin-left:40px;border-radius: 10px;box-shadow:6px 6px 5px #d8d8d8;-moz-box-shadow:6px 6px 5px #d8d8d8;-webkit-box-shadow:6px 6px 5px #d8d8d8;}
-	.leave,.inform{padding:100px 0;}
-	.home-img{height:50px;}
+	.home-img{height:50px;margin-top:100px;}
 	.leave-img{background: url(../../../../../static/img/home/leave.png) no-repeat center;}
-	.home-txt{text-align: center;height:50px;line-height:50px;font-size: 14px;}
+	.home-txt{text-align: center;height:50px;line-height:50px;font-size: 14px;margin-bottom: 100px;}
 	.home-txt:hover{color:#3FCBFF;}
 	.home-title{height:120px;line-height:120px;text-align: center;font-size: 18px;}
 	.home-btn{height:50px;line-height:50px;border:1px solid #ECEFF4;border-radius: 4px;background: #f1f1f1;margin:0 20px;text-align: center;font-size:14px;}

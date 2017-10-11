@@ -90,6 +90,7 @@
 					case 'YGGL':self.$router.push('/staffMng');break;
 					case 'JSQJJL':self.$router.push('/leave');break;
 					case 'ZXSQQJ':self.$router.push('/addLeave');break;
+					case 'SP':self.$router.push('/approval');break;
 				}
 			}
 		}
