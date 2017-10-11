@@ -24,7 +24,7 @@
 			<div class="butn btn-sec input-small operation" @click="educe">导出</div>
 		</div>
 		<div class="page" style="padding-top:20px;padding-bottom: 20px;">
-			<div class="page-info">
+			<div class="page-info" id="app">
 				<el-table ref="singleTable" :data="tableData" fit border style="width: 100%;" @selection-change="handleSelectionChange">
 					<el-table-column type="selection" width="55"></el-table-column>
 					<el-table-column prop="name" label="姓名" header-align="center"></el-table-column>
