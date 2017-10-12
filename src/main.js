@@ -12,7 +12,6 @@ import url from '../config/url.js';
 import VueQuillEditor from 'vue-quill-editor';
 import Quill from 'quill';
 import vueResource from 'vue-resource'
-console.log(Vue.prototype);
 var $http = axios.create({
 
 });
@@ -67,8 +66,7 @@ Vue.prototype.$axios = axios;
 	  }
 	}
 })*/
-var hm = new Vue;
-console.log(Vue.http);
+
 if(window.localStorage.access_token){
 	var access_token = JSON.parse(localStorage.getItem('access_token'));
 	Vue.http.headers.common['AccessToken'] = access_token;

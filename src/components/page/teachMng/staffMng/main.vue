@@ -79,7 +79,7 @@
 					console.log(data);
 					if(data.data.status == 200){
 						self.tableData = data.data.data.data;
-						let total = data.data.data.total+'0';
+						let total = data.data.data.last_page+'0';
 						self.totalpages = parseInt(total);
 					}
 				});

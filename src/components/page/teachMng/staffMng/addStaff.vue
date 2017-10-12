@@ -45,26 +45,34 @@
             		email:''            		
             	},
             	rules: {
-					name: [{
-						required: true,
-						message: '请输入用户名',
-						trigger: 'blur'
-					}],
-					mobile: [{
-						required: true,
-						message: '请输入电话号码',
-						trigger: 'blur'
-					}],
-					myPosition: [{
-						required: true,
-						message: '请输入职位',
-						trigger: 'blur'
-					}],
-					mobile: [{
-						required: true,
-						message: '请输入邮箱',
-						trigger: 'blur'
-					}]
+					name: [
+						{
+							required: true,
+							message: '请输入用户名',
+							trigger: 'blur'
+						}
+					],
+					mobile: [
+						{
+							required: true,
+							message: '请输入电话号码',
+							trigger: 'blur'
+						}
+					],
+					myPosition: [
+						{
+							required: true,
+							message: '请输入职位',
+							trigger: 'blur'
+						}
+					],
+					mobile: [
+						{
+							required: true,
+							message: '请输入邮箱',
+							trigger: 'blur'
+						}
+					]
 				},
 				optiond:[],
 				typename:'',

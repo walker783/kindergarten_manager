@@ -76,8 +76,10 @@
 			show($event){
 				let self = this;
 				if($($($event.path)[1]).siblings('ul[class=menuStyleOne]').is(':hidden')){
+				console.log(11);
 					$($($event.path)[1]).siblings('ul[class=menuStyleOne]').show();
 					$($($event.path)[1]).parent('li').siblings('li').children('ul[class=menuStyleOne]').hide();
+					$($($event.path)[1]).parent('li').siblings('li').children('div').children('i').removeClass('el-icon-caret-bottom').addClass('el-icon-caret-right');
 					$($($event.path)[1]).children('i').removeClass('el-icon-caret-right').addClass('el-icon-caret-bottom');
 				}else{
 					$($($event.path)[1]).siblings('ul[class=menuStyleOne]').hide();
@@ -87,10 +89,14 @@
 			skip(code){
 				let self = this;
 				switch (code){
+					//教学管理
 					case 'YGGL':self.$router.push('/staffMng');break;//员工管理
 					case 'JSQJJL':self.$router.push('/leave');break;//教师请假记录
 					case 'ZXSQQJ':self.$router.push('/addLeave');break;//在线申请请假
 					case 'SP':self.$router.push('/approval');break;//审批
+					//权限管理
+					case 'GLYLB':self.$router.push('/manager');break;//管理员列表
+					case 'JSLB':self.$router.push('/role');break;//角色列表
 				}
 			}
 		}
