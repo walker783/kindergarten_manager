@@ -53,21 +53,21 @@
 							trigger: 'blur'
 						}
 					],
-					mobile: [
+					phone: [
 						{
 							required: true,
 							message: '请输入电话号码',
 							trigger: 'blur'
 						}
 					],
-					myPosition: [
+					position: [
 						{
 							required: true,
 							message: '请输入职位',
 							trigger: 'blur'
 						}
 					],
-					mobile: [
+					email: [
 						{
 							required: true,
 							message: '请输入邮箱',
