@@ -32,7 +32,7 @@
 			    	<el-input type="textarea" v-model="leave.name" style="width:600px;min-height:40px;"></el-input>
 			  	</el-form-item>
 				<div class="search-item">
-					<el-upload class="upload-demo" ref="upload" action="https://jsonplaceholder.typicode.com/posts/" :on-preview="handlePreview" :on-remove="handleRemove" :file-list="fileList" :auto-upload="false">
+					<el-upload class="upload-demo" action="http://116.62.51.6/applicationLeave" enctype="multipart/form-data" auto-upload="true">
 						<el-button size="small" type="primary">上传附件</el-button>
 					</el-upload>
 				</div>
@@ -54,7 +54,7 @@
             		sta_time:'',
             		end_time:'',
             		days:'',
-            		imginput:'',
+            		leave_pic:'',
             		leave_type:''
             	},
             	rules: {
@@ -84,15 +84,26 @@
 					trigger: 'blur'
 				}]
 			},
-			fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}],
+			fileList: [],
 			multi_type:[],
 			leave_type:[],
-			imginput:[],
 			sta_time:'',
 			end_time:'',
             }
        },
        methods:{
+       	   handleReset: function () {
+        this.$refs.ruleForm.resetFields();
+      },
+      handleSubmit: function (ev) {},
+      handleRemove: function (file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview: function (file) {
+        console.log(file);
+      },
+      handleSuccess: function () {
+      },
 	       starttime(sta_time){
 	       		let self = this;
 	       		let str = sta_time.replace(/-/g,'/');
@@ -110,11 +121,15 @@
 	       		//let daystime = 
 	       		self.leave.days = (self.end_time - self.sta_time)/86400000;
 	       },
-		      handleRemove(file, fileList) {
-		        		console.log(file, fileList);
+	       handleRemove(file, fileList) {
+		        console.log(file, fileList);
 		      },
 		      handlePreview(file) {
-		        		console.log(file);
+		        console.log(file);
+		      },
+		      handleChange(file) {
+		      		let self = this;
+		      		self.leave.leave_pic = file.name;
 		      },
 	       submitForm(leave){
         			let self = this;
@@ -127,7 +142,7 @@
         				sta_time : self.leave.sta_time,
         				end_time : self.leave.end_time,
         				days : self.leave.days,
-        				imginput : self.leave.imginput,
+        				leave_pic : self.leave.leave_pic,
         				leave_type : self.leave.leave_type
         			};
 	        		self.$http.post('/web/applicationLeave',data).then(function(data){

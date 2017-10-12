@@ -37,41 +37,41 @@
 	export default {		
 	    data() {
             return {
-            	addMsg:{
-            		name:'',
-            		phone:'',
-            		job_number:'',
-            		position:'',
-            		email:''            		
-            	},
-            	rules: {
-					name: [{
-						required: true,
-						message: '请输入用户名',
-						trigger: 'blur'
-					}],
-					mobile: [{
-						required: true,
-						message: '请输入电话号码',
-						trigger: 'blur'
-					}],
-					myPosition: [{
-						required: true,
-						message: '请输入职位',
-						trigger: 'blur'
-					}],
-					mobile: [{
-						required: true,
-						message: '请输入邮箱',
-						trigger: 'blur'
-					}]
-				},
+	            	addMsg:{
+	            		name:'',
+	            		phone:'',
+	            		job_number:'',
+	            		position:'',
+	            		email:''            		
+	            	},
+	            	rules: {
+						name: [{
+							required: true,
+							message: '请输入用户名',
+							trigger: 'blur'
+						}],
+						mobile: [{
+							required: true,
+							message: '请输入电话号码',
+							trigger: 'blur'
+						}],
+						myPosition: [{
+							required: true,
+							message: '请输入职位',
+							trigger: 'blur'
+						}],
+						mobile: [{
+							required: true,
+							message: '请输入邮箱',
+							trigger: 'blur'
+						}]
+					},
 				optiond:[],
 				typename:'',
 				buttonUpdata:false,
 				buttonAdd:true
-            }
-        },
+	            }
+	        },
         created:function () {
         		let self = this;
         		let type = self.$route.query.type,

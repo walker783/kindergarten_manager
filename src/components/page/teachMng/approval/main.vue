@@ -16,7 +16,7 @@
 					</div>
 					<div class="zClr-999 appr-set-count">
 						<span>设置审批人</span>
-						<span class="appr-set-sign">+</span>
+						<span class="appr-set-sign" @click="addapprove">+</span>
 					</div>
 				</div>
 			</div>
@@ -28,17 +28,17 @@
 					</div>
 					<div class="zClr-999 appr-set-count">
 						<span>设置审批人</span>
-						<span class="appr-set-sign">+</span>
+						<span class="appr-set-sign" @click="addapprove">+</span>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="approval-right">
+		<div class="approval-right" v-show="approveset">
 			<div class="appr-bg"></div>
 			<div class="appr-main">
 				<div class="appr-right-title main-top" style="padding-left:30px;font-size: 20px;border:0;position: relative;">
 					审批人设置
-					<div class="appr-del"></div>
+					<div class="appr-del" @click="closeapprove"></div>
 				</div>
 				<div class="setAppr">
 					<div class="setAppr-title">
@@ -47,8 +47,8 @@
 					</div>
 					<div class="setAppr-main zoom">
 						<div class="setAppr-sel lf">
-							<el-select v-model="position" placeholder="请选择班级" style="width:150px;">
-								<el-option v-for="item in optiond" :label="item" :value="item"></el-option>
+							<el-select v-model="classes" placeholder="请选择班级" style="width:150px;">
+								<el-option v-for="item in classInfo" :label="item.name" :value="item.id"></el-option>
 							</el-select>
 						</div>
 						<div class="setAppr-sel lf setAppr-arrow">
@@ -56,24 +56,24 @@
 							<img src="../../../../../static/img/icon/arrow.png"/>
 						</div>
 						<div class="setAppr-sel lf">
-							<el-select v-model="position" placeholder="请选择审批人" style="width:150px;">
-								<el-option v-for="item in optiond" :label="item" :value="item"></el-option>
+							<el-select v-model="approve_name" placeholder="请选择审批人" style="width:150px;">
+								<el-option v-for="item in employeeInfo" :label="item.name" :value="item.id"></el-option>
 							</el-select>
 						</div>
 						<div class="lf" style="margin-left:40px;">
-							<el-button type="primary" class="btn-main" @click="render()">确定</el-button>
+							<el-button type="primary" class="btn-main" @click="sturender()">确定</el-button>
 						</div>
 					</div>
 				</div>
 				<div class="setAppr">
 					<div class="setAppr-title">
-						<span class="setAppr-genre">老师请假</span>
+						<span class="setAppr-genre">员工请假</span>
 						<span class="setAppr-txt">以角色为单位设置</span>
 					</div>
 					<div class="setAppr-main zoom">
 						<div class="setAppr-sel lf">
-							<el-select v-model="position" placeholder="请选择班级" style="width:150px;">
-								<el-option v-for="item in optiond" :label="item" :value="item"></el-option>
+							<el-select v-model="person" placeholder="员工类别" style="width:150px;">
+								<el-option v-for="item in personInfo" :label="item.tex" :value="item.tex"></el-option>
 							</el-select>
 						</div>
 						<div class="setAppr-sel lf setAppr-arrow">
@@ -81,12 +81,12 @@
 							<img src="../../../../../static/img/icon/arrow.png"/>
 						</div>
 						<div class="setAppr-sel lf">
-							<el-select v-model="position" placeholder="请选择审批人" style="width:150px;">
-								<el-option v-for="item in optiond" :label="item" :value="item"></el-option>
+							<el-select v-model="kapprove_id" placeholder="请选择审批人" style="width:150px;">
+								<el-option v-for="item in kinderInfo" :label="item.approve_name" :value="item.approve_id"></el-option>
 							</el-select>
 						</div>
 						<div class="lf" style="margin-left:40px;">
-							<el-button type="primary" class="btn-main" @click="render()">确定</el-button>
+							<el-button type="primary" class="btn-main" @click="kindrender()">确定</el-button>
 						</div>
 					</div>
 				</div>
@@ -100,10 +100,73 @@
 	export default {		
 	    data() {
             return {
-				optiond:[],
-				position:''
+				classInfo:[],
+				kinderInfo:[],
+				employeeInfo:[],
+				personInfo:[{tex:"全体员工"}],
+				approveset:false,
+				classes:'',
+				approve_name:'',
+				approve_id:'',
+				kapprove_name:'',
+				kapprove_id :''
             }
-        }
+       },
+       created:function () {
+        		let self = this;
+        		let access_token = JSON.parse(localStorage.getItem('access_token'));
+        		let data = {
+				access_token:access_token
+			};
+			self.$http.post('/web/setApproverInit',data).then(function(data){
+					self.classInfo = data.body.classInfo;
+					self.kinderInfo = data.body.kinderInfo;
+					console.log(data.body.kinderInfo);
+				})
+		},
+	   watch:{
+		   classes: function (val) {
+		   	  let self = this;
+		      this.classInfo.forEach(function(item){
+		      	if (item.id === val) {
+		      		self.employeeInfo = item.approve
+		      	}
+		      })
+		      this.approve_name = this.employeeInfo[0].name;
+		      this.approve_id = this.employeeInfo[0].id;
+		   }
+	   },
+       methods:{      	
+	       	addapprove(){
+	       		let self = this;
+	       		self.approveset = true;	
+	       	},
+	       	closeapprove(){
+	       		let self = this;
+	       		self.approveset = false;
+	       	},
+	       	sturender(){
+	       		let self = this;
+	     		let data={
+	      				class_id : self.classes,
+	      				approve_id:self.approve_id,
+	      				approve_name : self.approve_name
+	      			};
+		        		self.$http.post('/web/setClassApprover',data).then(function(data){
+		        			console.log(data);
+		        		})
+	       	},
+	       	kindrender(){
+	       		let self = this;
+	     		let data={
+	      				kapprove_id :self.kapprove_id ,
+	      				kapprove_name : self.kinderInfo
+	      			};
+		        		self.$http.post('/web/setKddApprover2',data).then(function(data){
+		        			console.log(data);
+		        		})
+	       	},
+       }
 	}
 </script>
 
