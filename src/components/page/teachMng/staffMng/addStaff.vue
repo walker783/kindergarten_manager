@@ -5,7 +5,7 @@
 				<div class="addsset-title">{{ typename }}</div>
 				<div class="addsset-main">
 					<el-form ref="addMsg" :model="addMsg" :rules="rules" label-width="100px" style="padding-right:100px;">
-						<el-form-item label="姓名：">
+						<el-form-item label="姓名：" prop="name">
 							<el-input v-model="addMsg.name" size="nomal" placeholder="请输入姓名"></el-input>
 						</el-form-item>
 						<el-form-item label="手机号：">
@@ -37,35 +37,44 @@
 	export default {		
 	    data() {
             return {
-	            	addMsg:{
-	            		name:'',
-	            		phone:'',
-	            		job_number:'',
-	            		position:'',
-	            		email:''            		
-	            	},
-	            	rules: {
-						name: [{
+
+            	addMsg:{
+            		name:'',
+            		phone:'',
+            		job_number:'',
+            		position:'',
+            		email:''            		
+            	},
+            	rules: {
+					name: [
+						{
 							required: true,
 							message: '请输入用户名',
 							trigger: 'blur'
-						}],
-						mobile: [{
+						}
+					],
+					mobile: [
+						{
 							required: true,
 							message: '请输入电话号码',
 							trigger: 'blur'
-						}],
-						myPosition: [{
+						}
+					],
+					myPosition: [
+						{
 							required: true,
 							message: '请输入职位',
 							trigger: 'blur'
-						}],
-						mobile: [{
+						}
+					],
+					mobile: [
+						{
 							required: true,
 							message: '请输入邮箱',
 							trigger: 'blur'
-						}]
-					},
+						}
+					]
+				},
 				optiond:[],
 				typename:'',
 				buttonUpdata:false,
@@ -73,12 +82,8 @@
 	            }
 	        },
         created:function () {
-        		let self = this;
-        		let type = self.$route.query.type,
-        		    access_token = JSON.parse(localStorage.getItem('access_token'));
-        		let data = {
-				access_token:access_token
-			};
+    		let self = this;
+    		let type = self.$route.query.type;
 			if(type == 'add'){
 				self.typename = '新增成员';
 				self.buttonUpdata = false;
@@ -88,16 +93,14 @@
 				self.buttonUpdata=true;
 				self.buttonAdd=false;
 			}
-			self.$http.post('/web/employee/save',data).then(function(data){
+			self.$http.post('/web/employee/save').then(function(data){
 					self.optiond =data.data.data.position;
 				})
 		},
         methods: {        	    
         		submitForm(addMsg){
         			let self = this;
-        			let access_token = JSON.parse(localStorage.getItem('access_token'));
         			let data={
-        				access_token:access_token,
         				name : self.addMsg.name,
         				phone : self.addMsg.phone,
         				job_number : self.addMsg.job_number,
@@ -110,11 +113,9 @@
         		},
         		submitForm(updataMsg){
         			let self = this;
-        			let id = self.$route.query.id,
-        				access_token = JSON.parse(localStorage.getItem('access_token'));
+        			let id = self.$route.query.id;
         			let data={
         				id:id,
-        				access_token:access_token,
         				phone : self.addMsg.phone,
         				position : self.addMsg.position,
         				email : self.addMsg.email

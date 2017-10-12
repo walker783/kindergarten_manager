@@ -134,9 +134,7 @@
 	       submitForm(leave){
         			let self = this;
         			self.$refs.upload.submit();
-        			let access_token = JSON.parse(localStorage.getItem('access_token'));
         			let data={
-        				access_token:access_token,
         				//multi_name : self.leave.multi_name,
         				//multi_type : self.leave.multi_type,
         				sta_time : self.leave.sta_time,
@@ -153,8 +151,7 @@
        
        created:function () {
         		let self = this;
-        		let type = self.$route.query.type,
-        		    access_token = JSON.parse(localStorage.getItem('access_token'));
+        		let type = self.$route.query.type;
     		    if(type == 'teacher'){
 				//self.leave_type = ["事假","病假","年假","调休","婚假","产假","陪产假","其他"];
 				self.leave_type = [{txt:"事假",value:0},{txt:"病假",value:1},{txt:"年假",value:2},{txt:"调休",value:3},{txt:"婚假",value:4},{txt:"产假",value:5},{txt:"陪产假",value:6},{txt:"其他",value:7}];
