@@ -25,7 +25,7 @@
 					</el-form>
 					<div class="addStaff-btn zoom">
 						<el-button v-show="buttonAdd" class="btn-main button rt" type="primary" @click="submitForm('addMsg')">提交</el-button>						
-						<el-button v-show="buttonUpdata" class="btn-main button lt" type="primary" @click="submitForm('updataMsg')">提交</el-button>
+						<el-button v-show="buttonUpdata" class="btn-main button lt" type="primary" @click="UpdataForm('addMsg')">提交</el-button>
 					</div>
 				</div>
 			</div>
@@ -111,7 +111,7 @@
 	        			console.log(data);
 	        		})
         		},
-        		submitForm(updataMsg){
+        		UpdataForm(addMsg){
         			let self = this;
         			let id = self.$route.query.id;
         			let data={

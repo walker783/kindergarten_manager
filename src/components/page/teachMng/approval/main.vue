@@ -81,7 +81,7 @@
 							<img src="../../../../../static/img/icon/arrow.png"/>
 						</div>
 						<div class="setAppr-sel lf">
-							<el-select v-model="kapprove_id" placeholder="请选择审批人" style="width:150px;">
+							<el-select v-model="kapprove" placeholder="请选择审批人" style="width:150px;">
 								<el-option v-for="item in kinderInfo" :label="item.approve_name" :value="item.approve_id"></el-option>
 							</el-select>
 						</div>
@@ -106,6 +106,8 @@
 				personInfo:[{tex:"全体员工"}],
 				approveset:false,
 				classes:'',
+				person:'',
+				kapprove:'',
 				approve_name:'',
 				approve_id:'',
 				kapprove_name:'',
@@ -134,7 +136,12 @@
 		      })
 		      this.approve_name = this.employeeInfo[0].name;
 		      this.approve_id = this.employeeInfo[0].id;
-		   }
+		   },
+		   kapprove:function(val){
+				let self = this;
+				self.kapprove_id = val;
+				self.kapprove_name =  this.kinderInfo[0].approve_name;
+		   },
 	   },
        methods:{      	
 	       	addapprove(){
@@ -160,9 +167,9 @@
 	       		let self = this;
 	     		let data={
 	      				kapprove_id :self.kapprove_id ,
-	      				kapprove_name : self.kinderInfo
+	      				kapprove_name : self.kapprove_name
 	      			};
-		        		self.$http.post('/web/setKddApprover2',data).then(function(data){
+		        		self.$http.post('/web/setKddApprover',data).then(function(data){
 		        			console.log(data);
 		        		})
 	       	},
