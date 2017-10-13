@@ -6,7 +6,7 @@
 				<div class="approval-title lf">教学管理/<span class="zClr-666">审批</span></div>
 			</div>
 			<div class="search-btn" style="margin-top:20px;">
-				<div class="butn btn-main btn-normal" style="margin-top:5px;">我的审批</div>
+				<div class="butn btn-main btn-normal" style="margin-top:5px;" @click="apprList">我的审批</div>
 			</div>
 			<div class="approval-install">
 				<div class="appr-set">
@@ -123,7 +123,6 @@
 			self.$http.post('/web/setApproverInit',data).then(function(data){
 					self.classInfo = data.body.classInfo;
 					self.kinderInfo = data.body.kinderInfo;
-					console.log(data.body.kinderInfo);
 				})
 		},
 	   watch:{
@@ -143,7 +142,11 @@
 				self.kapprove_name =  this.kinderInfo[0].approve_name;
 		   },
 	   },
-       methods:{      	
+       methods:{
+       		apprList(){
+       			let self = this;
+				self.$router.push('/apprList');
+       		},
 	       	addapprove(){
 	       		let self = this;
 	       		self.approveset = true;	
@@ -155,13 +158,15 @@
 	       	sturender(){
 	       		let self = this;
 	     		let data={
-	      				class_id : self.classes,
-	      				approve_id:self.approve_id,
-	      				approve_name : self.approve_name
-	      			};
-		        		self.$http.post('/web/setClassApprover',data).then(function(data){
-		        			console.log(data);
-		        		})
+      				class_id : self.classes,
+      				approve_id:self.approve_id,
+      				approve_name : self.approve_name
+      			};
+	        		self.$http.post('/web/setClassApprover',data).then(function(data){
+	        			if(data.data.status == 200){
+	        				alert("幼儿园审批设置成功")
+	        			}
+	        		})
 	       	},
 	       	kindrender(){
 	       		let self = this;
@@ -169,8 +174,10 @@
 	      				kapprove_id :self.kapprove_id ,
 	      				kapprove_name : self.kapprove_name
 	      			};
-		        		self.$http.post('/web/setKddApprover',data).then(function(data){
-		        			console.log(data);
+		        		self.$http.post('/web/setKdApprover',data).then(function(data){
+		        			if(data.data.status == 200){
+	        				alert("员工审批设置成功")
+	        			}
 		        		})
 	       	},
        }

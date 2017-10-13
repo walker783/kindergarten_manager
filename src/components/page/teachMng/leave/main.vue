@@ -41,32 +41,38 @@
 			return {
 				tableData:[],
 				cur_page:1,
-				totalpages:100
+				totalpages:10
 			}
 		},
 		created() {
-			let self = this;
-				self.$http.post('/web/employee/level').then(function(data){
-					console.log(data);
-//						self.tableData = data.data.data.data;
-//						let total = data.data.data.total+'0';
-//						self.totalpages = parseInt(total);
-				})
+			this.render(1);
 		},
 		methods:{
 			handleCurrentChange(val) {
 				this.cur_page = val;
 				this.render(val);
 			},
-			render(){
+			handleSelectionChange(val){
+				this.multipleSelection = val;
+			},
+			render(num){
 				let self = this;
-				self.$http.post('/web/employee/level').then(function(data){
+				self.cur_page = num;
+				let data = {
+					page:num,
+				};
+				self.$http.post('/web/approveRecord').then(function(data){
 					console.log(data);
-//						self.tableData = data.data.data.data;
-//						let total = data.data.data.total+'0';
-//						self.totalpages = parseInt(total);
+					if(data.data.status == 200){
+						self.tableData = data.data.list;
+						let total = data.data.list.last_page+'0';
+						self.totalpages = parseInt(total);
+					}					
 				})
 			},
+			handleDelete(index, row) {
+		      	console.log(index, row);
+		    },
 			educe(){
 				let self = this;
 //				let data = {

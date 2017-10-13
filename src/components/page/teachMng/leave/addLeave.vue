@@ -31,14 +31,14 @@
 				<el-form-item label="备注" class="search-item">
 			    	<el-input type="textarea" v-model="leave.name" style="width:600px;min-height:40px;"></el-input>
 			  	</el-form-item>
-				<div class="search-item">
-					<el-upload class="upload-demo" action="http://116.62.51.6/applicationLeave" enctype="multipart/form-data" auto-upload="true">
+				<!--<div class="search-item">
+					<el-upload class="upload-demo" action="" enctype="multipart/form-data" auto-upload="true">
 						<el-button size="small" type="primary">上传附件</el-button>
 					</el-upload>
-				</div>
+				</div>-->
 			</el-form>
 			<div class="addStaff-btn" style="margin-top:50px;">
-				<el-button class="button btn-main" type="success"  @click="submitForm('leave')">提交</el-button>
+				<el-button class="button btn-main" type="primary"  @click="submitForm('leave')">提交</el-button>
 			</div>
 		</div>
 	</div>
@@ -133,10 +133,7 @@
 		      },
 	       submitForm(leave){
         			let self = this;
-        			self.$refs.upload.submit();
         			let data={
-        				//multi_name : self.leave.multi_name,
-        				//multi_type : self.leave.multi_type,
         				sta_time : self.leave.sta_time,
         				end_time : self.leave.end_time,
         				days : self.leave.days,

@@ -21,6 +21,10 @@ export default new Router({ //department
 					component: resolve => require(['../components/page/teachMng/approval/apprList.vue'], resolve),
 				},
 				{
+					path: '/apprPerson',//审核审批
+					component: resolve => require(['../components/page/teachMng/approval/apprPerson.vue'], resolve),
+				},
+				{
 					path: '/apprListed',//我已审批
 					component: resolve => require(['../components/page/teachMng/approval/apprListed.vue'], resolve),
 				},

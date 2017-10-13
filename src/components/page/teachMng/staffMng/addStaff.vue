@@ -94,8 +94,8 @@
 				self.buttonAdd=false;
 			}
 			self.$http.post('/web/employee/save').then(function(data){
-					self.optiond =data.data.data.position;
-				})
+				self.optiond =data.data.data.position;
+			})
 		},
         methods: {        	    
         		submitForm(addMsg){
