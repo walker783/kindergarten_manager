@@ -1,2 +1,1 @@
-#jingshiadmin
-精视楼宇广告管理系统
+# jscm
